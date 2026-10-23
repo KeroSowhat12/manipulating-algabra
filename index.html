@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" class="dark h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT Practice Test - Eng. Keroulss Tharwat</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax for rendering SAT Math formulas -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f1f5f9;
+            user-select: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+    <!-- ==================== PAGE 1: START / LANDING PAGE ==================== -->
+    <div id="start-screen" class="min-h-screen flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-[#0b0f19] via-[#0f172a] to-[#090d16] px-4 sm:px-6 lg:px-8 py-10">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-600/10 via-transparent to-transparent pointer-events-none"></div>
+
+        <div class="max-w-2xl mx-auto my-auto text-center relative z-10 space-y-6 w-full">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-bold uppercase tracking-widest shadow-lg">
+                <i class="fa-solid fa-crown text-amber-400"></i> Elite SAT & EST Math Practice
+            </span>
+
+            <div class="space-y-3">
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white drop-shadow-lg">
+                    Eng. <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">Keroulss Tharwat</span>
+                </h1>
+                
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+                    <a href="tel:+201227829886" class="inline-flex items-center gap-2 text-base sm:text-lg font-bold text-cyan-300 hover:text-cyan-200 bg-slate-800/80 border border-cyan-500/30 px-4 py-2 rounded-xl transition-all">
+                        <i class="fa-solid fa-phone-volume text-cyan-400"></i> +20 122 782 9886
+                    </a>
+                    <a href="https://wa.me/201227829886" target="_blank" class="inline-flex items-center gap-2 text-base sm:text-lg font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 border border-emerald-500/30 px-4 py-2 rounded-xl transition-all">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp Us
+                    </a>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800/80 border border-blue-500/30 p-5 rounded-2xl text-slate-200 text-sm sm:text-base font-semibold shadow-inner">
+                🚀 <span class="text-amber-300 font-bold">Want to reach your dream High Score?</span> Join our interactive SAT Math group courses today!
+            </div>
+
+            <!-- Student Name Entry -->
+            <div class="bg-slate-900/90 border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md space-y-5 text-left">
+                <div>
+                    <label for="student-name" class="block text-sm sm:text-base font-bold text-cyan-300 mb-2">
+                        <i class="fa-solid fa-user-pen mr-1"></i> Student Full Name:
+                    </label>
+                    <input type="text" id="student-name" placeholder="Enter your full name..." class="w-full bg-slate-950 border border-slate-700 text-white placeholder-slate-500 px-4 py-3.5 rounded-xl focus:outline-none focus:border-blue-500 text-left font-bold transition-all shadow-inner">
+                    <p id="name-error" class="hidden text-rose-400 text-xs font-semibold mt-2"><i class="fa-solid fa-circle-exclamation"></i> Please enter your name to start the test.</p>
+                </div>
+
+                <div class="flex items-center justify-between text-xs sm:text-sm text-slate-400 border-t border-slate-800 pt-4">
+                    <span class="flex items-center"><i class="fa-solid fa-clock text-blue-400 mr-1"></i> 60 Min</span>
+                    <span class="flex items-center"><i class="fa-solid fa-list-check text-blue-400 mr-1"></i> 18 Questions</span>
+                    <span class="flex items-center"><i class="fa-solid fa-calculator text-blue-400 mr-1"></i> Calc Included</span>
+                </div>
+
+                <!-- START EXAM BUTTON -->
+                <button onclick="startQuiz()" class="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black px-8 py-4 rounded-xl text-lg shadow-xl shadow-blue-600/30 transition-all hover:scale-[1.01] active:scale-95 border border-blue-400/30 cursor-pointer">
+                    <i class="fa-solid fa-play text-amber-400"></i> Start Practice Exam
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center text-xs text-slate-500 font-medium">
+            © Eng. Keroulss Tharwat SAT Prep
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 2: EXAM WORKSPACE ==================== -->
+    <div id="quiz-screen" class="hidden min-h-screen flex-col justify-between bg-[#0b0f19]">
+
+        <!-- Exam Workspace Sub-Header Controls -->
+        <header class="bg-[#111827]/90 border-b border-slate-800 shadow-md backdrop-blur-md">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+                
+                <!-- Left Tag -->
+                <div class="flex items-center gap-3">
+                    <span class="bg-blue-600 text-white text-xs font-black px-3 py-1 rounded-md uppercase tracking-wider shadow-sm">
+                        MODULE 2
+                    </span>
+                    <div>
+                        <h1 class="font-bold text-sm sm:text-base text-slate-100">
+                            Math - Manipulating Algebraic Expressions
+                        </h1>
+                        <p class="text-xs text-slate-400">SAT & EST Official Prep</p>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleCalculator()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-calculator text-cyan-400"></i> <span class="hidden sm:inline font-semibold">Calculator</span>
+                    </button>
+
+                    <button onclick="toggleFormulaSheet()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs px-3 py-2 rounded-lg transition-all shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-book-open text-blue-400"></i> <span class="hidden sm:inline font-semibold">Reference</span>
+                    </button>
+
+                    <!-- Timer -->
+                    <div id="timer-box" class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg font-mono text-xs font-bold text-amber-400 shadow-sm">
+                        <i class="fa-solid fa-clock text-amber-400"></i>
+                        <span id="timer-display">60:00</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 flex flex-col justify-between">
+
+            <!-- Sub-header -->
+            <div class="flex items-center justify-between mb-4">
+                <button id="flag-btn" onclick="toggleFlagCurrentQuestion()" class="flex items-center gap-2 text-xs font-semibold bg-slate-800 border border-slate-700 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-400 transition-colors shadow-sm cursor-pointer">
+                    <i class="fa-regular fa-bookmark"></i> Mark for Review
+                </button>
+
+                <button onclick="toggleModal('questionGridModal')" class="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center gap-1.5 transition-colors cursor-pointer">
+                    <i class="fa-solid fa-border-all"></i> Question Map (<span id="answered-count-badge">0</span>/18)
+                </button>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card" class="bg-[#111827] border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl flex flex-col gap-5 relative">
+                
+                <div class="text-xs font-black text-blue-400 uppercase tracking-widest border-b border-slate-800 pb-3">
+                    QUESTION <span id="current-q-num">1</span> OF 18
+                </div>
+
+                <!-- Question Text -->
+                <div id="question-prompt" class="text-slate-100 text-base sm:text-lg leading-relaxed font-normal space-y-3">
+                </div>
+
+                <!-- Answer Choices -->
+                <div id="options-container" class="grid grid-cols-1 gap-3 pt-2">
+                </div>
+
+                <!-- Explanation Box -->
+                <div id="explanation-box" class="hidden mt-2 bg-slate-950/90 border border-blue-500/40 rounded-xl p-4 text-sm space-y-2 shadow-inner">
+                    <div class="text-blue-400 font-extrabold uppercase text-xs tracking-wider flex items-center gap-2 border-b border-slate-800 pb-2">
+                        <i class="fa-solid fa-lightbulb text-amber-400"></i> Step-by-Step Explanation:
+                    </div>
+                    <div id="explanation-content" class="text-slate-200 text-sm leading-relaxed space-y-1"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation Bar -->
+            <div class="pt-6 flex items-center justify-between">
+                <button id="prev-btn" onclick="prevQuestion()" class="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 text-sm font-semibold transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-chevron-left mr-1"></i> Previous
+                </button>
+
+                <div class="text-xs text-slate-400 font-semibold text-center hidden sm:block">
+                    Eng. Keroulss Tharwat SAT Prep
+                </div>
+
+                <button id="next-btn" onclick="nextQuestion()" class="px-7 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-all flex items-center gap-2 cursor-pointer shadow-lg shadow-blue-600/30">
+                    Next <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+
+        <!-- Teacher Footer Banner -->
+        <footer class="bg-[#0f172a] border-t border-slate-800/80 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-lg mt-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-cyan-400 shadow-inner">
+                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="font-bold text-sm sm:text-base text-slate-100 leading-tight">
+                        Eng. Keroulss Tharwat
+                    </h2>
+                    <p class="text-xs text-slate-400 font-medium">
+                        SAT & EST Math Specialist
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+                <a href="tel:+201227829886" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-slate-700/80 bg-slate-800/60 hover:bg-slate-700/60 text-slate-200 text-xs font-semibold transition-all">
+                    <i class="fa-solid fa-phone text-emerald-400 text-xs"></i>
+                    <span>+201227829886</span>
+                </a>
+                <a href="https://wa.me/201227829886" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-emerald-500/40 bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-300 text-xs font-bold transition-all shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== PAGE 3: RESULTS SCREEN ==================== -->
+    <div id="results-screen" class="hidden min-h-screen flex-col justify-center items-center px-4 py-10 bg-[#0b0f19]">
+        <div class="max-w-xl w-full bg-[#111827] border border-blue-500/40 p-8 rounded-3xl shadow-2xl text-center space-y-6">
+            
+            <div class="w-20 h-20 bg-blue-500/20 border border-blue-500/40 text-amber-400 rounded-full flex items-center justify-center mx-auto text-3xl font-black shadow-lg">
+                <i class="fa-solid fa-trophy"></i>
+            </div>
+            
+            <div>
+                <h2 class="text-3xl font-black text-white tracking-tight">Eng. Keroulss Tharwat</h2>
+                <p class="text-cyan-400 text-xs font-bold uppercase tracking-wider mt-1">SAT & EST Math Elite Coaching</p>
+            </div>
+
+            <div class="space-y-1">
+                <p class="text-slate-400 text-xs font-medium">Student Name:</p>
+                <h3 id="res-student-name" class="text-xl font-black text-blue-400"></h3>
+            </div>
+
+            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-2 shadow-inner">
+                <div class="text-4xl sm:text-5xl font-black text-amber-400" id="final-score-display">0 / 18</div>
+                <div class="text-sm font-bold text-slate-300" id="final-percentage">0% Correct Score</div>
+            </div>
+
+            <!-- Encouragement & Promotion Box -->
+            <div class="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border border-cyan-500/40 p-5 rounded-2xl text-slate-200 text-xs sm:text-sm space-y-3 shadow-lg text-left">
+                <div class="flex items-center gap-2 text-amber-400 font-extrabold text-sm uppercase tracking-wide">
+                    <i class="fa-solid fa-rocket text-base"></i> Aiming for an 800 SAT Math Score?
+                </div>
+                <p class="text-slate-300 leading-relaxed font-medium">
+                    Want to boost your confidence, master advanced problem-solving tricks, and guarantee your dream score? <strong class="text-white">Join Eng. Keroulss Tharwat's elite group coaching courses!</strong>
+                </p>
+                <div class="pt-1 text-cyan-300 font-bold text-xs flex items-center gap-1.5">
+                    <i class="fa-solid fa-star text-amber-400"></i> Interactive Group Batches • Past-Paper Mastery • Proven Shortcuts
+                </div>
+            </div>
+
+            <!-- Contact & Sharing Options -->
+            <div class="space-y-3 pt-2">
+                <p class="text-xs font-bold text-slate-300">Submit your test score or contact Mr. Keroulss directly:</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button onclick="sendViaWhatsApp()" class="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-lg shadow-emerald-600/20 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Send Score via WhatsApp
+                    </button>
+
+                    <button onclick="sendViaEmail()" class="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-lg shadow-indigo-600/20 cursor-pointer">
+                        <i class="fa-solid fa-envelope text-lg"></i> Send Score via Email
+                    </button>
+                </div>
+
+                <!-- DIRECT CONTACT WITHOUT SCORE BUTTON -->
+                <div class="pt-2">
+                    <a href="https://wa.me/201227829886?text=Hello%20Eng.%20Keroulss,%20I%20would%20like%20to%20inquire%20about%20your%20SAT/EST%20Math%20Group%20Classes." target="_blank" class="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-cyan-500/40 text-cyan-300 font-bold py-3 px-4 rounded-xl text-sm transition-all shadow-md cursor-pointer">
+                        <i class="fa-solid fa-comments text-cyan-400 text-lg"></i> Contact Directly (Inquire About Group Classes)
+                    </a>
+                </div>
+
+                <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                    <span class="font-bold text-cyan-400"><i class="fa-solid fa-phone"></i> +20 122 782 9886</span>
+                    <a href="https://wa.me/201227829886" target="_blank" class="text-emerald-400 hover:underline flex items-center gap-1 font-bold">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp Direct
+                    </a>
+                </div>
+            </div>
+
+            <button onclick="location.reload()" class="text-xs text-slate-400 hover:text-blue-400 transition-colors underline block mx-auto cursor-pointer pt-2">
+                Retake Practice Test
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+    <!-- Question Map Modal -->
+    <div id="questionGridModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden justify-center items-center z-50 p-4">
+        <div class="bg-[#111827] border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-border-all text-blue-400"></i> Question Navigator
+                </h3>
+                <button onclick="toggleModal('questionGridModal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="grid-container" class="grid grid-cols-6 gap-2.5 max-h-60 overflow-y-auto custom-scrollbar p-1"></div>
+            <button onclick="toggleModal('questionGridModal')" class="w-full bg-slate-800 hover:bg-slate-700 py-2.5 rounded-xl text-xs font-bold text-slate-200 cursor-pointer">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Scientific Calculator Modal -->
+    <div id="calculatorModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden justify-center items-center z-50 p-4">
+        <div class="bg-[#0f172a] border border-cyan-500/40 rounded-3xl max-w-md w-full p-5 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                    <span class="bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-extrabold text-[10px] px-2 py-0.5 rounded uppercase tracking-wider">fx-991 EX</span>
+                    <h3 class="font-extrabold text-sm text-slate-100 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calculator text-cyan-400"></i> Scientific Calculator
+                    </h3>
+                </div>
+                <button onclick="toggleCalculator()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-1 shadow-inner text-right">
+                <div id="calc-history" class="text-xs font-mono text-slate-500 h-4 overflow-hidden"></div>
+                <input type="text" id="calc-screen" readonly value="0" class="w-full bg-transparent text-right font-mono text-2xl text-cyan-300 tracking-wider focus:outline-none">
+            </div>
+            
+            <div class="space-y-2">
+                <div class="grid grid-cols-5 gap-1.5 text-xs font-semibold">
+                    <button onclick="calcFunc('sin')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">sin</button>
+                    <button onclick="calcFunc('cos')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">cos</button>
+                    <button onclick="calcFunc('tan')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">tan</button>
+                    <button onclick="calcInput('^')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">xⁿ</button>
+                    <button onclick="calcFunc('sqrt')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">√x</button>
+
+                    <button onclick="calcFunc('log')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">log</button>
+                    <button onclick="calcFunc('ln')" class="bg-slate-800 hover:bg-slate-700 text-cyan-300 py-2 rounded-lg cursor-pointer">ln</button>
+                    <button onclick="calcInput('(')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 rounded-lg cursor-pointer">(</button>
+                    <button onclick="calcInput(')')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 rounded-lg cursor-pointer">)</button>
+                    <button onclick="calcInput('π')" class="bg-slate-800 hover:bg-slate-700 text-amber-300 py-2 rounded-lg cursor-pointer">π</button>
+                </div>
+
+                <div class="grid grid-cols-4 gap-2 text-sm font-bold">
+                    <button onclick="calcClear()" class="bg-rose-600/30 text-rose-300 p-3 rounded-xl hover:bg-rose-600/40 cursor-pointer">AC</button>
+                    <button onclick="calcBackspace()" class="bg-amber-600/30 text-amber-300 p-3 rounded-xl hover:bg-amber-600/40 cursor-pointer">DEL</button>
+                    <button onclick="calcInput('%')" class="bg-slate-800 text-slate-200 p-3 rounded-xl hover:bg-slate-700 cursor-pointer">%</button>
+                    <button onclick="calcInput('/')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40 cursor-pointer">÷</button>
+
+                    <button onclick="calcInput('7')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">7</button>
+                    <button onclick="calcInput('8')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">8</button>
+                    <button onclick="calcInput('9')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">9</button>
+                    <button onclick="calcInput('*')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40 cursor-pointer">×</button>
+
+                    <button onclick="calcInput('4')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">4</button>
+                    <button onclick="calcInput('5')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">5</button>
+                    <button onclick="calcInput('6')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">6</button>
+                    <button onclick="calcInput('-')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40 cursor-pointer">-</button>
+
+                    <button onclick="calcInput('1')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">1</button>
+                    <button onclick="calcInput('2')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">2</button>
+                    <button onclick="calcInput('3')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">3</button>
+                    <button onclick="calcInput('+')" class="bg-blue-600/30 text-blue-300 p-3 rounded-xl hover:bg-blue-600/40 cursor-pointer">+</button>
+
+                    <button onclick="calcInput('0')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">0</button>
+                    <button onclick="calcInput('.')" class="bg-slate-800/90 text-white p-3 rounded-xl hover:bg-slate-700 cursor-pointer">.</button>
+                    <button onclick="calcInput('e')" class="bg-slate-800/90 text-amber-300 p-3 rounded-xl hover:bg-slate-700 cursor-pointer">e</button>
+                    <button onclick="calcEval()" class="bg-cyan-600 hover:bg-cyan-500 text-white p-3 rounded-xl shadow-lg shadow-cyan-600/30 cursor-pointer">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formula Reference Modal -->
+    <div id="formulaModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden justify-center items-center z-50 p-4">
+        <div class="bg-[#111827] border border-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="font-bold text-base text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open text-blue-400"></i> SAT Math Reference Sheet
+                </h3>
+                <button onclick="toggleFormulaSheet()" class="text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Area of Circle:</span>
+                    <p>\(A = \pi r^2\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Circumference of Circle:</span>
+                    <p>\(C = 2\pi r\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Rectangle Area:</span>
+                    <p>\(A = \ell w\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Triangle Area:</span>
+                    <p>\(A = \frac{1}{2} b h\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Pythagorean Theorem:</span>
+                    <p>\(a^2 + b^2 = c^2\)</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+                    <span class="text-blue-400 font-bold">Special Triangles:</span>
+                    <p>\(30^\circ-60^\circ-90^\circ\), \(45^\circ-45^\circ-90^\circ\)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const questions = [
+            {
+                prompt: "\\[z = \\frac{x + 5}{3y}\\]<br>The given equation relates the distinct positive real numbers \\(x\\), \\(y\\), and \\(z\\). Which equation correctly expresses \\(x\\) in terms of \\(y\\) and \\(z\\)?",
+                options: ["x = 3yz - 5", "x = 3yz + 5", "x = \\frac{z}{3y} - 5", "x = \\frac{z - 5}{3y}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Start with the given equation: \\[z = \\frac{x + 5}{3y}\\]<br><strong>Step 2:</strong> Multiply both sides by \\(3y\\) to clear the fraction denominator: \\[3yz = x + 5\\]<br><strong>Step 3:</strong> Subtract 5 from both sides to isolate \\(x\\): \\[x = 3yz - 5\\]"
+            },
+            {
+                prompt: "The equation \\(y = \\frac{x + 2w}{z}\\) relates the positive numbers \\(w\\), \\(x\\), \\(y\\), and \\(z\\). Which equation correctly expresses \\(x\\) in terms of \\(w\\), \\(y\\), and \\(z\\)?",
+                options: ["x = yz - 2w", "x = yz + 2w", "x = \\frac{z}{2wy}", "x = \\frac{y}{2zw}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Start with the original equation: \\[y = \\frac{x + 2w}{z}\\]<br><strong>Step 2:</strong> Multiply both sides by \\(z\\): \\[yz = x + 2w\\]<br><strong>Step 3:</strong> Subtract \\(2w\\) from both sides to solve for \\(x\\): \\[x = yz - 2w\\]"
+            },
+            {
+                prompt: "The equation \\(y = \\sqrt{\\frac{2hg}{x}}\\), relates the positive numbers \\(g\\), \\(h\\), \\(x\\) and \\(y\\). Which equation correctly expresses \\(h\\) in terms of \\(g\\), \\(x\\) and \\(y\\)?",
+                options: ["h = \\frac{x y^2}{2g}", "h = 2g x y^2", "h = \\frac{g y^2}{2x}", "h = \\frac{2x y}{g}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Square both sides of the equation to eliminate the radical: \\[y^2 = \\frac{2hg}{x}\\]<br><strong>Step 2:</strong> Multiply both sides by \\(x\\): \\[x y^2 = 2hg\\]<br><strong>Step 3:</strong> Divide both sides by \\(2g\\) to isolate \\(h\\): \\[h = \\frac{x y^2}{2g}\\]"
+            },
+            {
+                prompt: "\\(k\\%\\) of \\(x\\) is 5. Which expression represents \\(x\\) in terms of \\(k\\)?",
+                options: ["\\frac{500}{k}", "\\frac{5k}{100}", "(100)(5)k", "\\frac{k}{500}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Express \\(k\\%\\) as a fraction: \\(\\frac{k}{100}\\).<br><strong>Step 2:</strong> Translate '\\(k\\%\\) of \\(x\\) is 5' into an algebraic equation: \\[\\left(\\frac{k}{100}\\right) x = 5\\]<br><strong>Step 3:</strong> Multiply both sides by 100: \\[k x = 500\\]<br><strong>Step 4:</strong> Divide by \\(k\\) to solve for \\(x\\): \\[x = \\frac{500}{k}\\]"
+            },
+            {
+                prompt: "If \\(\\frac{2x}{5} - 3 = \\frac{x}{5} + 2\\), what is the value of \\(x\\)?",
+                options: ["25", "5", "15", "10"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Subtract \\(\\frac{x}{5}\\) from both sides: \\[\\frac{2x}{5} - \\frac{x}{5} - 3 = 2 \\implies \\frac{x}{5} - 3 = 2\\]<br><strong>Step 2:</strong> Add 3 to both sides: \\[\\frac{x}{5} = 5\\]<br><strong>Step 3:</strong> Multiply both sides by 5: \\[x = 25\\]"
+            },
+            {
+                prompt: "\\((y + 2g)(kx + g) = 1\\)<br>The given equation relates the positive numbers \\(g\\), \\(k\\), \\(x\\), and \\(y\\). Which equation correctly expresses \\(y\\) in terms of \\(g\\), \\(k\\), and \\(x\\)?",
+                options: ["y = \\frac{1}{kx + g} - 2g", "y = \\frac{1 - 2g}{kx + g}", "y = 1 - kx - 3g", "y = kx - 2g"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Divide both sides by \\((kx + g)\\): \\[y + 2g = \\frac{1}{kx + g}\\]<br><strong>Step 2:</strong> Subtract \\(2g\\) from both sides to isolate \\(y\\): \\[y = \\frac{1}{kx + g} - 2g\\]"
+            },
+            {
+                prompt: "If \\(5x + 5 = 30\\), what is the value of \\(x + 1\\)?",
+                options: ["6", "5", "7", "11"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Factor out 5 from the left side: \\[5(x + 1) = 30\\]<br><strong>Step 2:</strong> Divide both sides by 5 directly to find \\((x + 1)\\): \\[x + 1 = \\frac{30}{5} = 6\\]"
+            },
+            {
+                prompt: "If \\(\\frac{8}{x + 2} = 4\\), what is the value of \\(x + 1\\)?",
+                options: ["1", "2", "0", "3"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Multiply both sides by \\((x + 2)\\): \\[8 = 4(x + 2)\\]<br><strong>Step 2:</strong> Divide by 4: \\[x + 2 = 2 \\implies x = 0\\]<br><strong>Step 3:</strong> Substitute \\(x = 0\\) into \\(x + 1\\): \\[0 + 1 = 1\\]"
+            },
+            {
+                prompt: "The ratio of 8 to \\(x\\) is equivalent to the ratio of 32 to \\(y\\). Which equation represents \\(y\\) in terms of \\(x\\)?",
+                options: ["y = 4x", "y = \\frac{1}{4}x", "y = 8x", "y = \\frac{1}{8}x"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Set up the proportion: \\(\\frac{8}{x} = \\frac{32}{y}\\).<br><strong>Step 2:</strong> Cross-multiply: \\[8y = 32x\\]<br><strong>Step 3:</strong> Divide both sides by 8: \\[y = 4x\\]"
+            },
+            {
+                prompt: "The expression \\(\\frac{x^8(x - 4)}{2x} + \\frac{4x^8}{2x}\\) is equivalent to \\(\\frac{1}{2}x^c\\) where \\(c\\) is a constant and \\(x > 0\\). What is the value of \\(c\\)?",
+                options: ["8", "7", "4", "2"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Combine terms over the common denominator \\(2x\\): \\[\\frac{x^8(x - 4) + 4x^8}{2x}\\]<br><strong>Step 2:</strong> Expand numerator: \\[x^8(x) - 4x^8 + 4x^8 = x^9\\]<br><strong>Step 3:</strong> Simplify: \\[\\frac{x^9}{2x} = \\frac{1}{2}x^8\\]<br><strong>Step 4:</strong> Comparing with \\(\\frac{1}{2}x^c\\) gives \\(c = 8\\)."
+            },
+            {
+                prompt: "\\(x^2 + 15 = 79\\)<br>What is the positive solution to the given equation?",
+                options: ["8", "10", "12", "64"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Subtract 15 from both sides: \\[x^2 = 79 - 15 = 64\\]<br><strong>Step 2:</strong> Take the square root: \\[x = \\sqrt{64} = 8\\]"
+            },
+            {
+                prompt: "If \\(4\\left(\\frac{x}{6} + \\frac{1}{2}\\right) + 2 = 14\\), what is the value of \\(\\frac{x}{6} + \\frac{1}{2}\\)?",
+                options: ["3", "2", "6", "12"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Subtract 2 from both sides: \\[4\\left(\\frac{x}{6} + \\frac{1}{2}\\right) = 12\\]<br><strong>Step 2:</strong> Divide by 4: \\[\\frac{x}{6} + \\frac{1}{2} = \\frac{12}{4} = 3\\]"
+            },
+            {
+                prompt: "\\(ka + nb = 12\\)<br>The given equation relates the positive numbers \\(a\\), \\(b\\), \\(k\\), and \\(n\\). Which of the following correctly expresses \\(a\\) in terms of \\(b\\), \\(k\\) and \\(n\\)?",
+                options: ["a = \\frac{12 - nb}{k}", "a = 12 - \\frac{k}{nb}", "a = 12 - \\frac{nb}{k}", "a = \\frac{12 - k}{nb}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Subtract \\(nb\\) from both sides: \\[ka = 12 - nb\\]<br><strong>Step 2:</strong> Divide by \\(k\\) to isolate \\(a\\): \\[a = \\frac{12 - nb}{k}\\]"
+            },
+            {
+                prompt: "\\(A = P(2rt + 1)\\)<br>The equation shown gives \\(A\\) in terms of \\(P\\), \\(r\\), and \\(t\\). Which equation gives \\(t\\) in terms of \\(A\\), \\(P\\) and \\(r\\)?",
+                options: ["t = \\frac{A - P}{2Pr}", "t = \\frac{A}{2Pr} - \\frac{1}{r}", "t = \\frac{A}{P} - \\frac{1}{2r}", "t = \\frac{A}{2r} - \\frac{P}{r}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Divide both sides by \\(P\\): \\[\\frac{A}{P} = 2rt + 1\\]<br><strong>Step 2:</strong> Subtract 1 from both sides: \\[\\frac{A}{P} - 1 = 2rt \\implies \\frac{A - P}{P} = 2rt\\]<br><strong>Step 3:</strong> Divide by \\(2r\\): \\[t = \\frac{A - P}{2Pr}\\]"
+            },
+            {
+                prompt: "\\(3dx - 2cx = 4cd - x\\)<br>The given equation relates the real numbers \\(c\\), \\(d\\), and \\(x\\). Which equation correctly expresses \\(x\\) in terms of \\(c\\) and \\(d\\)?",
+                options: ["x = \\frac{4cd}{3d - 2c + 1}", "x = \\frac{4cd}{3d - 2c}", "x = \\frac{3d + 2c}{4cd}", "x = \\frac{4d}{3d - 2c + 1}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Move all terms with \\(x\\) to the left side: \\[3dx - 2cx + x = 4cd\\]<br><strong>Step 2:</strong> Factor out \\(x\\): \\[x(3d - 2c + 1) = 4cd\\]<br><strong>Step 3:</strong> Divide by \\((3d - 2c + 1)\\): \\[x = \\frac{4cd}{3d - 2c + 1}\\]"
+            },
+            {
+                prompt: "If \\(3\\sqrt{2x} = a\\), what is \\(2x\\) in terms of \\(a\\)?",
+                options: ["\\frac{a^2}{9}", "\\frac{a}{3}", "\\frac{a^2}{3}", "9a^2"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Divide both sides by 3: \\[\\sqrt{2x} = \\frac{a}{3}\\]<br><strong>Step 2:</strong> Square both sides: \\[2x = \\left(\\frac{a}{3}\\right)^2 = \\frac{a^2}{9}\\]"
+            },
+            {
+                prompt: "The expression \\(\\frac{5x^3 - 20x}{x - 2}\\) is equivalent to which of the following for \\(x \\neq 2\\)?",
+                options: ["5x(x + 2)", "5x(x - 2)", "5x^2 + 10", "5x^2 - 10"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Factor out \\(5x\\) from the numerator: \\[5x(x^2 - 4)\\]<br><strong>Step 2:</strong> Factor the difference of squares: \\[5x(x - 2)(x + 2)\\]<br><strong>Step 3:</strong> Divide by \\((x - 2)\\): \\[\\frac{5x(x - 2)(x + 2)}{x - 2} = 5x(x + 2)\\]"
+            },
+            {
+                prompt: "If \\(q = \\frac{1}{2} p v^2\\), which of the following gives \\(v\\) in terms of \\(q\\) and \\(p\\) for positive values of \\(v\\), \\(q\\), and \\(p\\)?",
+                options: ["v = \\sqrt{\\frac{2q}{p}}", "v = \\sqrt{\\frac{q}{2p}}", "v = \\frac{2q}{p}", "v = \\frac{\\sqrt{2q}}{p}"],
+                correct: 0,
+                explanation: "<strong>Step 1:</strong> Multiply both sides by 2: \\[2q = p v^2\\]<br><strong>Step 2:</strong> Divide by \\(p\\): \\[v^2 = \\frac{2q}{p}\\]<br><strong>Step 3:</strong> Take the square root of both sides: \\[v = \\sqrt{\\frac{2q}{p}}\\]"
+            }
+        ];
+
+        let currentIndex = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+        let flagged = new Array(questions.length).fill(false);
+        let studentName = "";
+
+        let timerInterval = null;
+        let timeRemaining = 3600; // 60 Minutes
+
+        function startQuiz() {
+            const nameInput = document.getElementById('student-name');
+            const errorMsg = document.getElementById('name-error');
+
+            if (!nameInput.value.trim()) {
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            errorMsg.classList.add('hidden');
+            studentName = nameInput.value.trim();
+
+            document.getElementById('start-screen').classList.add('hidden');
+            const quizScreen = document.getElementById('quiz-screen');
+            quizScreen.classList.remove('hidden');
+            quizScreen.classList.add('flex');
+
+            renderQuestion();
+            renderNavGrid();
+            startTimer();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById('current-q-num').innerText = currentIndex + 1;
+            document.getElementById('question-prompt').innerHTML = q.prompt;
+
+            const selectedChoice = userAnswers[currentIndex];
+            const hasAnswered = selectedChoice !== null;
+
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            const optionPrefixes = ['A', 'B', 'C', 'D'];
+            q.options.forEach((optText, i) => {
+                const isSelected = selectedChoice === i;
+                const isCorrectOption = i === q.correct;
+                
+                let cardStyle = "border-slate-800 bg-slate-900/60 hover:border-blue-500/60";
+                let badgeStyle = "bg-slate-800 text-slate-300 border-slate-700";
+
+                if (hasAnswered) {
+                    if (isCorrectOption) {
+                        cardStyle = "border-emerald-500 bg-emerald-500/10 shadow-[0_0_15px_rgba(16,185,129,0.15)]";
+                        badgeStyle = "bg-emerald-600 text-white border-emerald-500";
+                    } else if (isSelected && !isCorrectOption) {
+                        cardStyle = "border-rose-500 bg-rose-500/10";
+                        badgeStyle = "bg-rose-600 text-white border-rose-500";
+                    } else {
+                        cardStyle = "border-slate-800 bg-slate-950/40 opacity-40";
+                    }
+                }
+
+                const optCard = document.createElement('div');
+                optCard.className = `p-4 rounded-xl border ${cardStyle} cursor-pointer flex items-center gap-4 transition-all duration-200`;
+                optCard.onclick = () => selectOption(i);
+
+                optCard.innerHTML = `
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center font-extrabold text-xs border ${badgeStyle}">
+                        ${optionPrefixes[i]}
+                    </div>
+                    <div class="text-base text-slate-200 flex-grow font-mono">
+                        \\(${optText}\\)
+                    </div>
+                    ${hasAnswered && isCorrectOption ? '<i class="fa-solid fa-circle-check text-emerald-400"></i>' : ''}
+                    ${hasAnswered && isSelected && !isCorrectOption ? '<i class="fa-solid fa-circle-xmark text-rose-400"></i>' : ''}
+                `;
+                container.appendChild(optCard);
+            });
+
+            // Explanation Box
+            const expBox = document.getElementById('explanation-box');
+            const expContent = document.getElementById('explanation-content');
+            if (hasAnswered) {
+                expContent.innerHTML = q.explanation;
+                expBox.classList.remove('hidden');
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Flag Button State
+            const flagBtn = document.getElementById('flag-btn');
+            flagBtn.innerHTML = flagged[currentIndex]
+                ? '<i class="fa-solid fa-bookmark text-amber-400"></i> <span class="text-amber-400">Marked for Review</span>'
+                : '<i class="fa-regular fa-bookmark"></i> Mark for Review';
+
+            // Prev & Next Buttons
+            document.getElementById('prev-btn').disabled = (currentIndex === 0);
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.innerHTML = currentIndex === questions.length - 1
+                ? 'Finish <i class="fa-solid fa-check-circle text-emerald-400"></i>'
+                : 'Next <i class="fa-solid fa-chevron-right"></i>';
+
+            if (window.MathJax) MathJax.typesetPromise();
+        }
+
+        function selectOption(index) {
+            userAnswers[currentIndex] = index;
+            renderQuestion();
+            renderNavGrid();
+            updateStats();
+        }
+
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                submitTest();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        function toggleFlagCurrentQuestion() {
+            flagged[currentIndex] = !flagged[currentIndex];
+            renderQuestion();
+            renderNavGrid();
+        }
+
+        function renderNavGrid() {
+            const grid = document.getElementById('grid-container');
+            grid.innerHTML = '';
+            questions.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                const isAnswered = userAnswers[idx] !== null;
+                const isCurrent = idx === currentIndex;
+                const isFlagged = flagged[idx];
+
+                let cls = "h-10 rounded-lg text-xs font-bold transition-all relative border cursor-pointer ";
+                if (isCurrent) cls += "border-blue-400 ring-2 ring-blue-500/50 bg-blue-600/30 text-white ";
+                else if (isAnswered) cls += "border-emerald-500/60 bg-emerald-500/20 text-emerald-300 ";
+                else cls += "border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700 ";
+
+                btn.className = cls;
+                btn.innerText = idx + 1;
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderQuestion();
+                    toggleModal('questionGridModal');
+                };
+
+                if (isFlagged) {
+                    const badge = document.createElement('span');
+                    badge.className = "absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full";
+                    btn.appendChild(badge);
+                }
+
+                grid.appendChild(btn);
+            });
+        }
+
+        function updateStats() {
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            document.getElementById('answered-count-badge').innerText = answeredCount;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                document.getElementById('timer-display').innerText = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function submitTest() {
+            clearInterval(timerInterval);
+            let score = 0;
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === q.correct) score++;
+            });
+
+            const pct = Math.round((score / questions.length) * 100);
+
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('results-screen').classList.remove('hidden');
+            document.getElementById('results-screen').classList.add('flex');
+
+            document.getElementById('res-student-name').innerText = studentName;
+            document.getElementById('final-score-display').innerText = `${score} / ${questions.length}`;
+            document.getElementById('final-percentage').innerText = `${pct}% Correct Score`;
+        }
+
+        function sendViaWhatsApp() {
+            let score = 0;
+            questions.forEach((q, i) => { if (userAnswers[i] === q.correct) score++; });
+            const message = `Hello Eng. Keroulss, I am the student: ${studentName}\nI completed the SAT Manipulating Algebraic Expressions Practice Test with score: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%).`;
+            window.open(`https://wa.me/201227829886?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function sendViaEmail() {
+            let score = 0;
+            questions.forEach((q, i) => { if (userAnswers[i] === q.correct) score++; });
+            const subject = `SAT Exam Result - ${studentName}`;
+            const body = `Student Name: ${studentName}\nModule: Manipulating Algebraic Expressions\nScore: ${score}/${questions.length}\nPercentage: ${Math.round((score/questions.length)*100)}%`;
+            window.location.href = `mailto:keroulss.tharwat@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // Modals & Calculator Logic
+        function toggleModal(id) {
+            const m = document.getElementById(id);
+            if (m.classList.contains('hidden')) {
+                m.classList.remove('hidden');
+                m.classList.add('flex');
+            } else {
+                m.classList.add('hidden');
+                m.classList.remove('flex');
+            }
+        }
+
+        function toggleCalculator() { toggleModal('calculatorModal'); }
+        function toggleFormulaSheet() { toggleModal('formulaModal'); }
+
+        let calcExpr = "";
+        function calcInput(val) {
+            const screen = document.getElementById('calc-screen');
+            if (screen.value === "0" || screen.value === "Error") calcExpr = "";
+            calcExpr += val;
+            screen.value = calcExpr;
+        }
+
+        function calcFunc(fn) {
+            const screen = document.getElementById('calc-screen');
+            if (screen.value === "0" || screen.value === "Error") calcExpr = "";
+            calcExpr += fn + "(";
+            screen.value = calcExpr;
+        }
+
+        function calcBackspace() {
+            calcExpr = calcExpr.slice(0, -1);
+            document.getElementById('calc-screen').value = calcExpr || "0";
+        }
+
+        function calcClear() {
+            calcExpr = "";
+            document.getElementById('calc-screen').value = "0";
+            document.getElementById('calc-history').innerText = "";
+        }
+
+        function calcEval() {
+            try {
+                let parsed = calcExpr
+                    .replace(/π/g, 'Math.PI')
+                    .replace(/\be\b/g, 'Math.E')
+                    .replace(/\^/g, '**')
+                    .replace(/sin\(/g, 'Math.sin(')
+                    .replace(/cos\(/g, 'Math.cos(')
+                    .replace(/tan\(/g, 'Math.tan(')
+                    .replace(/sqrt\(/g, 'Math.sqrt(')
+                    .replace(/log\(/g, 'Math.log10(')
+                    .replace(/ln\(/g, 'Math.log(');
+
+                document.getElementById('calc-history').innerText = calcExpr + " =";
+                const res = Function('"use strict";return (' + parsed + ')')();
+                
+                const formatted = Number.isInteger(res) ? res : parseFloat(res.toFixed(6));
+                document.getElementById('calc-screen').value = formatted;
+                calcExpr = formatted.toString();
+            } catch (e) {
+                document.getElementById('calc-screen').value = "Error";
+                calcExpr = "";
+            }
+        }
+    </script>
+</body>
+</html>
